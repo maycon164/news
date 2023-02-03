@@ -19,7 +19,7 @@ export const App = () => {
                         <Nav toggleTheme={toggleTheme} />
                         <Routes>
                             <Route path='/' element={<Posts type='top' />} />
-                            <Route path='/new' element={<h1>New Page</h1>} />
+                            <Route path='/new' element={<Posts type='new' />} />
                             <Route path='/post' element={<Post />} />
                             <Route path='/user' element={<User />} />
                             <Route path='*' element={<h1>404 page not found!!</h1>} />
