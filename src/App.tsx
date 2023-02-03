@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from './contexts/theme';
+import { Theme } from './types';
+import { Posts } from './components/Posts';
+import { Nav } from './components/Nav';
+import { Post } from './components/Post';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+    const [theme, setTheme] = useState<Theme>('light');
+    const toggleTheme = () => setTheme((theme) => theme === 'light' ? 'dark' : 'light');
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    return (
+        <Router>
+            <ThemeProvider value={theme}>
+                <div className={theme}>
+                    <div className='container'>
+                        <Nav toggleTheme={toggleTheme} />
+                        <Routes>
+                            <Route path='/' element={<Posts type='top' />} />
+                            <Route path='/new' element={<h1>New Page</h1>} />
+                            <Route path='/post' element={<Post />} />
+                            <Route path='/user' element={<h1>User Element</h1>} />
+                            <Route path='*' element={<h1>404 page not found!!</h1>} />
+                        </Routes>
+                    </div>
+                </div>
+            </ThemeProvider>
+        </Router>
+    )
 }
-
-export default App
