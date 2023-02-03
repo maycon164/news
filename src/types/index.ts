@@ -13,7 +13,16 @@ export type Post = {
     url?: string
     by: string
     time: number
-    descendents: number
+    descendants: number
+    kids: number[]
+    text: string
     deleted: boolean
     dead: boolean
-} 
+}
+
+export type Comment = {
+    id: number
+    by: string
+    time: number
+    text: string
+}

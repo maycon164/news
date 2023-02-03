@@ -19,6 +19,7 @@ export const PostList = ({ posts }: { posts: Post[] }) => {
                     <li key={post.id} className="post">
                         <Title url={post.url} title={post.title} id={post.id} />
                         <PostMetaInfo
+                            comment={false}
                             id={post.id}
                             by={post.by}
                             time={post.time}

@@ -4,10 +4,14 @@ import { ThemeContext } from "../contexts/theme"
 import { formatDate } from "../utils/helpers"
 
 type PostMetaInfoType = {
-    by: string, time: number, id: number, descendants: number
+    comment: boolean,
+    by: string,
+    time: number,
+    id: number,
+    descendants?: number
 }
 
-export const PostMetaInfo = ({ by, time, id, descendants }: PostMetaInfoType) => {
+export const PostMetaInfo = ({ by, time, comment, id, descendants }: PostMetaInfoType) => {
 
     const theme = useContext(ThemeContext);
 
@@ -15,7 +19,7 @@ export const PostMetaInfo = ({ by, time, id, descendants }: PostMetaInfoType) =>
         <div className={`meta-info-${theme}`}>
             <span>by <Link to={`/user/?id=${by}`}>{by}</Link></span>
             <span>on {formatDate(time)}</span>
-            {typeof descendants === 'number' && (
+            {!comment && (
                 <span>
                     with <Link to={`/post?id=${id}`}>{descendants}</Link> comments
                 </span>

@@ -1,6 +1,9 @@
+import { useState } from "react"
 
-export const Loading = () => {
+export const Loading = ({ text = "Loading" }: { text?: string }) => {
+    const [textDisplay, setTextDisplay] = useState(text);
+
     return (
-        <div>Loading</div>
+        <div>{text}</div>
     )
 }
