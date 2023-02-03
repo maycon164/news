@@ -26,3 +26,11 @@ export type Comment = {
     time: number
     text: string
 }
+
+export type User = {
+    id: number
+    created: number
+    about: string
+    submitted: number[]
+    karma: number
+}

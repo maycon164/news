@@ -5,6 +5,7 @@ import { Theme } from './types';
 import { Posts } from './components/Posts';
 import { Nav } from './components/Nav';
 import { Post } from './components/Post';
+import { User } from './components/User';
 
 export const App = () => {
     const [theme, setTheme] = useState<Theme>('light');
@@ -20,7 +21,7 @@ export const App = () => {
                             <Route path='/' element={<Posts type='top' />} />
                             <Route path='/new' element={<h1>New Page</h1>} />
                             <Route path='/post' element={<Post />} />
-                            <Route path='/user' element={<h1>User Element</h1>} />
+                            <Route path='/user' element={<User />} />
                             <Route path='*' element={<h1>404 page not found!!</h1>} />
                         </Routes>
                     </div>

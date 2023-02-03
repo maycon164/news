@@ -17,7 +17,7 @@ export const PostMetaInfo = ({ by, time, comment, id, descendants }: PostMetaInf
 
     return (
         <div className={`meta-info-${theme}`}>
-            <span>by <Link to={`/user/?id=${by}`}>{by}</Link></span>
+            <span>by <Link to={`/user?id=${by}`}>{by}</Link></span>
             <span>on {formatDate(time)}</span>
             {!comment && (
                 <span>

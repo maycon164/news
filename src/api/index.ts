@@ -1,4 +1,4 @@
-import { Post, Comment } from "../types";
+import { Post, Comment, User } from "../types";
 const url = `https://hacker-news.firebaseio.com/v0`
 const json = '.json?print=pretty'
 
@@ -9,6 +9,11 @@ class Api {
             .then(res => res.json())
 
         return post as Post
+    }
+
+    async fetchUser(id: string): Promise<User> {
+        const user = await fetch(`${url}/user/${id}${json}`).then(res => res.json());
+        return user as User
     }
 
     async fetchMainPosts(type: string): Promise<Post[]> {
@@ -23,6 +28,13 @@ class Api {
             .then(ids => Promise.all(ids.map(this.fetchItem)))
             .then(results => this.removeDeleted(this.onlyPosts(this.removeDead(results))));
         console.log(posts)
+        return posts as Post[]
+    }
+
+    async fetchPosts(ids: number[]): Promise<Post[]> {
+        const posts = await Promise.all(ids.map(this.fetchItem))
+            .then(results => this.removeDead(this.onlyPosts(this.removeDead(results))))
+
         return posts as Post[]
     }
 
